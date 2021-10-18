@@ -2,6 +2,8 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import Buttons from './components/Buttons';
+
 
 export default function App() {
 
@@ -60,9 +62,9 @@ export default function App() {
           }
         </Picker>
 
-          
-
       </View>
+
+      <Buttons/>
     </View>
   );
 }
