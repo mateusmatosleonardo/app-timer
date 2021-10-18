@@ -2,13 +2,14 @@ import { StatusBar } from 'expo-status-bar';
 import React, { cloneElement, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
+import Contador from './components/Contador';
 
 
 export default function App() {
 
   const [estado, setEstado] = useState('selecionar')
   const [segundos, setSegundos] = useState(0)
-  const [minutos, setMinutos] = useState(0)
+  const [minutos, setMinutos] = useState(1)
   const [alarmeSound, setAlarmeSound] = useState([
     {
       id: 1,
@@ -106,11 +107,7 @@ export default function App() {
   );
     }else if(estado === 'iniciar'){
       return(
-        <View>
-            <Text>
-                Começou!
-            </Text>
-        </View>
+        <Contador setarEstado={setEstado} minutos={minutos} segundos={segundos}/>
       )
     }
 }
