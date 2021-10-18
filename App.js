@@ -59,10 +59,8 @@ export default function App() {
             })
           }
         </Picker>
-        
-        <View>
+
           
-        </View>
 
       </View>
     </View>
