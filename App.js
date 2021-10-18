@@ -28,9 +28,10 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar style="auto" />
       <Text style={{color: '#fff', fontSize: 30}} >Selecione o seu tempo: </Text>
       <View style={{flexDirection: 'row'}}>
-        <Text style={{color: '#fff'}}>Min</Text>
+        <Text style={{color: '#fff', paddingTop: 14}}>Min</Text>
         <Picker
           selectedValue={minutos}
           onValueChange={(itemValue, itemIndex) => setMinutos(itemValue)}
@@ -45,7 +46,7 @@ export default function App() {
 
         </Picker>
 
-        <Text style={{color: '#fff'}}>Seg</Text>
+        <Text style={{color: '#fff', paddingTop: 14}}>Seg</Text>
         <Picker
           selectedValue={segundos}
           onValueChange={(itemValue, itemIndex) => setSegundos(itemValue)}
@@ -58,7 +59,11 @@ export default function App() {
             })
           }
         </Picker>
-        <StatusBar style="auto" />
+        
+        <View>
+          
+        </View>
+
       </View>
     </View>
   );
@@ -70,6 +75,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'rgb(70, 130, 219)'
+    backgroundColor: '#444'
   },
 })
