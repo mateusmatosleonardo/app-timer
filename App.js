@@ -10,16 +10,19 @@ export default function App() {
   const [minutos, setMinutos] = useState(0)
   const [alarmeSound, setAlarmeSound] = useState([
     {
+      id: 1,
       selecionado: true,
       som: "alarme 1",
       file: "alarme1.mp3"
     },
     {
+      id: 2,
       selecionado: false,
       som: "alarme 2",
       file: "alarme2.mp3"
     },
     {
+      id: 3,
       selecionado: false,
       som: "alarme 3",
       file: "alarme3.mp3"
@@ -31,8 +34,17 @@ export default function App() {
     numbers.push(i)
   }
 
-  const setAlarme = () =>{
-    alert("Alarme alterado")
+  const setAlarme = (id) =>{
+    let alarmesTemp = alarmeSound.map((val)=>{
+      if(id != val.id)
+        val.selecionado = false
+      else
+        val.selecionado = true
+      return val
+    })
+    
+    setAlarmeSound(alarmesTemp)
+
   }
 
   return (
@@ -76,13 +88,13 @@ export default function App() {
           alarmeSound.map((val)=>{
             if(val.selecionado){
               return (
-                <TouchableOpacity onPress={()=> setAlarme()} style={styles.btnSelected}>
+                <TouchableOpacity onPress={()=> setAlarme(val.id)} style={styles.btnSelected}>
                   <Text style={{color: '#222'}}>{val.som}</Text>
                 </TouchableOpacity>
               )
             }else{
               return (
-                <TouchableOpacity onPress={()=> setAlarme()} style={styles.btnSelect}><Text style={{color: '#222'}}>{val.som}</Text></TouchableOpacity>
+                <TouchableOpacity onPress={()=> setAlarme(val.id)} style={styles.btnSelect}><Text style={{color: '#222'}}>{val.som}</Text></TouchableOpacity>
               )
             }
           })
