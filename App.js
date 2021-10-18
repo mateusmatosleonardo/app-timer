@@ -1,8 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
-import Buttons from './components/Buttons';
 
 
 export default function App() {
@@ -64,7 +63,16 @@ export default function App() {
 
       </View>
 
-      <Buttons/>
+        <View>
+        {
+          alarmeSound.map((val)=>{
+            return (
+              <TouchableOpacity style={styles.btnSelect}><Text style={{color: '#222'}}>{val.som}</Text></TouchableOpacity>
+            )
+          })
+        }
+        </View>
+
     </View>
   );
 }
@@ -77,4 +85,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: '#444'
   },
+  btnSelect: {
+    padding: 8,
+    backgroundColor: '#c9e4f0',
+    borderRadius: 10
+  }
 })
