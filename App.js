@@ -107,7 +107,7 @@ export default function App() {
   );
     }else if(estado === 'iniciar'){
       return(
-        <Contador setarEstado={setEstado} minutos={minutos} segundos={segundos}/>
+        <Contador setarMinutos={setMinutos} setarSegundos={setSegundos} setarEstado={setEstado} minutos={minutos} segundos={segundos}/>
       )
     }
 }

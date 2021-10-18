@@ -1,8 +1,38 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { StatusBar } from 'expo-status-bar';
 
 export default props =>{
+
+    let done = false
+
+    useEffect(()=>{
+        const timer = setInterval(()=>{
+            props.setarSegundos(props.segundos - 1)
+            if(props.segundos <= 0){
+                if(props.minutos > 0){
+                    props.setarMinutos(minutos - 1)
+                    props.setarSegundos(59)
+                }else{
+                    if(!done){
+                        done = true
+                        props.setarEstado('leitura')
+                        props.setarMinutos(1)
+                        props.setarSegundos(0)
+                    }
+                }
+            }
+        }, 1000)
+
+        return () => clearInterval(timer)
+    })
+
+    function resetar(){
+        props.setarEstado('leitura')
+        props.setarMinutos(1)
+        props.setarSegundos(0)
+    }
+
     return(
         <>
         <View style={styles.container}>
@@ -11,7 +41,7 @@ export default props =>{
                 <Text style={styles.contador}>{props.minutos} : </Text>
                 <Text style={styles.contador}>{props.segundos}</Text>
             </View>
-                <TouchableOpacity onPress={()=> props.setarEstado('selecionar')} style={styles.btnIniciar}><Text style={{textAlign: 'center', paddingTop: 35}}>Resetar</Text></TouchableOpacity>
+                <TouchableOpacity onPress={()=> resetar()} style={styles.btnIniciar}><Text style={{textAlign: 'center', paddingTop: 35}}>Resetar</Text></TouchableOpacity>
         </View>
 
         
