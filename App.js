@@ -8,7 +8,6 @@ export default function App() {
 
   const [segundos, setSegundos] = useState(0)
   const [minutos, setMinutos] = useState(0)
-
   const [alarmeSound, setAlarmeSound] = useState([
     {
       selecionado: true,
@@ -19,12 +18,21 @@ export default function App() {
       selecionado: false,
       som: "alarme 2",
       file: "alarme2.mp3"
+    },
+    {
+      selecionado: false,
+      som: "alarme 3",
+      file: "alarme3.mp3"
     }
   ])
 
   let numbers = []
   for(let i = 1; i <= 60; i++){
     numbers.push(i)
+  }
+
+  const setAlarme = () =>{
+    alert("Alarme alterado")
   }
 
   return (
@@ -63,12 +71,20 @@ export default function App() {
 
       </View>
 
-        <View>
+        <View style={{flexDirection: 'row'}}>
         {
           alarmeSound.map((val)=>{
-            return (
-              <TouchableOpacity style={styles.btnSelect}><Text style={{color: '#222'}}>{val.som}</Text></TouchableOpacity>
-            )
+            if(val.selecionado){
+              return (
+                <TouchableOpacity onPress={()=> setAlarme()} style={styles.btnSelected}>
+                  <Text style={{color: '#222'}}>{val.som}</Text>
+                </TouchableOpacity>
+              )
+            }else{
+              return (
+                <TouchableOpacity onPress={()=> setAlarme()} style={styles.btnSelect}><Text style={{color: '#222'}}>{val.som}</Text></TouchableOpacity>
+              )
+            }
           })
         }
         </View>
@@ -86,8 +102,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#444'
   },
   btnSelect: {
+    marginRight: 10,
     padding: 8,
     backgroundColor: '#c9e4f0',
     borderRadius: 10
+  },
+  btnSelected: {
+    marginRight: 10,
+    padding: 8,
+    backgroundColor: 'rgba(201, 228, 240, 0.5)',
+    borderRadius: 10,
+    borderColor: '#fff',
+    borderWidth: 1
   }
 })
