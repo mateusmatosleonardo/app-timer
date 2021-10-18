@@ -30,8 +30,11 @@ export default function App() {
     <View style={styles.container}>
       <Text style={{color: '#fff', fontSize: 30}} >Selecione o seu tempo: </Text>
       <View style={{flexDirection: 'row'}}>
+        <Text style={{color: '#fff'}}>Min</Text>
         <Picker
-          style={{height: 50, width: 100}}
+          selectedValue={minutos}
+          onValueChange={(itemValue, itemIndex) => setMinutos(itemValue)}
+          style={{height: 50, width: 100, color: '#fff'}}
         >
 
           {
@@ -42,8 +45,11 @@ export default function App() {
 
         </Picker>
 
+        <Text style={{color: '#fff'}}>Seg</Text>
         <Picker
-          style={{height: 50, width: 100}}
+          selectedValue={segundos}
+          onValueChange={(itemValue, itemIndex) => setSegundos(itemValue)}
+          style={{height: 50, width: 100, color: '#fff'}}
         >
           <Picker.Item label='0' value='0'/>
           {
@@ -66,4 +72,4 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     backgroundColor: 'rgb(70, 130, 219)'
   },
-});
+})
