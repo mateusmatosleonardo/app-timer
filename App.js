@@ -21,6 +21,11 @@ export default function App() {
     }
   ])
 
+  let numbers = []
+  for(let i = 1; i <= 60; i++){
+    numbers.push(i)
+  }
+
   return (
     <View style={styles.container}>
       <Text style={{color: '#fff', fontSize: 30}} >Selecione o seu tempo: </Text>
@@ -28,14 +33,24 @@ export default function App() {
         <Picker
           style={{height: 50, width: 100}}
         >
-          <Picker.Item label="java" value="java"/>
-          <Picker.Item label="js" value="javascript"/>
+
+          {
+            numbers.map((val)=>{
+              return (<Picker.Item label={val.toString()} value={val.toString()}/>)
+            })
+          }
+
         </Picker>
+
         <Picker
           style={{height: 50, width: 100}}
         >
-          <Picker.Item label="java" value="java"/>
-          <Picker.Item label="js" value="javascript"/>
+          <Picker.Item label='0' value='0'/>
+          {
+            numbers.map((val)=>{
+              return (<Picker.Item label={val.toString()} value={val.toString()}/>)
+            })
+          }
         </Picker>
         <StatusBar style="auto" />
       </View>
