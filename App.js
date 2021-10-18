@@ -1,11 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import React, { cloneElement, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 
 
 export default function App() {
 
+  const [estado, setEstado] = useState('selecionar')
   const [segundos, setSegundos] = useState(0)
   const [minutos, setMinutos] = useState(0)
   const [alarmeSound, setAlarmeSound] = useState([
@@ -46,7 +47,7 @@ export default function App() {
     setAlarmeSound(alarmesTemp)
 
   }
-
+  if(estado === 'selecionar'){
   return (
     <View style={styles.container}>
       <StatusBar style="auto" />
@@ -100,9 +101,18 @@ export default function App() {
           })
         }
         </View>
-
+          <TouchableOpacity onPress={()=> setEstado('iniciar')} style={styles.btnIniciar}><Text style={{textAlign: 'center', paddingTop: 35}}>Iniciar</Text></TouchableOpacity>
     </View>
   );
+    }else if(estado === 'iniciar'){
+      return(
+        <View>
+            <Text>
+                Começou!
+            </Text>
+        </View>
+      )
+    }
 }
 
 const styles = StyleSheet.create({
@@ -126,5 +136,14 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     borderColor: '#fff',
     borderWidth: 1
+  },
+  btnIniciar: {
+    backgroundColor: 'rgb(201, 228, 240)',
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    marginTop: 40,
+    borderColor: '#fff',
+    borderWidth: 2
   }
 })
