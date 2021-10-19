@@ -3,8 +3,6 @@ import React, { cloneElement, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import Contador from './components/Contador';
-import { Audio } from 'expo-av';
-
 
 export default function App() {
 
@@ -16,19 +14,19 @@ export default function App() {
       id: 1,
       selecionado: true,
       som: "alarme 1",
-      file: "alarme1.mp3"
+      file: require('./assets/alarme1.mp3')
     },
     {
       id: 2,
       selecionado: false,
       som: "alarme 2",
-      file: "alarme2.mp3"
+      file: require('./assets/alarme2.mp3')
     },
     {
       id: 3,
       selecionado: false,
       som: "alarme 3",
-      file: "alarme3.mp3"
+      file: require('./assets/alarme3.mp3')
     }
   ])
 
@@ -108,7 +106,7 @@ export default function App() {
   );
     }else if(estado === 'iniciar'){
       return(
-        <Contador setarMinutos={setMinutos} setarSegundos={setSegundos} setarEstado={setEstado} minutos={minutos} segundos={segundos}/>
+        <Contador alarmes={alarmeSound} setarMinutos={setMinutos} setarSegundos={setSegundos} setarEstado={setEstado} minutos={minutos} segundos={segundos}/>
       )
     }
 }

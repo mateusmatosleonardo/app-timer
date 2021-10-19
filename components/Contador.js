@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import { StatusBar } from 'expo-status-bar';
+import { Audio } from 'expo-av';
 
 export default props =>{
 
@@ -19,12 +20,31 @@ export default props =>{
                         props.setarEstado('selecionar')
                         props.setarMinutos(0)
                         props.setarSegundos(1)
+                        playSound()
                     }
                 }
             }
         }, 1000)
         return () => clearInterval(timer);
     })
+
+    async function playSound(){
+        const soundObject = new Audio.Sound();
+        try {
+            var alarme;
+            props.alarmes.map((val)=>{
+            if(val.selecionado){
+                alarme = val.file
+            }
+        })
+        await soundObject.loadAsync(alarme);
+        await soundObject.playAsync();
+
+        // await sound.unloadAsync();
+        } catch (error) {
+        
+        }
+    }   
 
     function resetar(){
         props.setarEstado('leitura')
