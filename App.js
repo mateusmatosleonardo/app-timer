@@ -3,13 +3,14 @@ import React, { cloneElement, useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import {Picker} from '@react-native-picker/picker';
 import Contador from './components/Contador';
+import { Audio } from 'expo-av';
 
 
 export default function App() {
 
   const [estado, setEstado] = useState('selecionar')
-  const [segundos, setSegundos] = useState(0)
-  const [minutos, setMinutos] = useState(1)
+  const [segundos, setSegundos] = useState(1)
+  const [minutos, setMinutos] = useState(0)
   const [alarmeSound, setAlarmeSound] = useState([
     {
       id: 1,
@@ -60,7 +61,7 @@ export default function App() {
           onValueChange={(itemValue, itemIndex) => setMinutos(itemValue)}
           style={{height: 50, width: 100, color: '#fff'}}
         >
-
+          <Picker.Item label='0' value='0'/>
           {
             numbers.map((val)=>{
               return (<Picker.Item label={val.toString()} value={val.toString()}/>)
@@ -75,7 +76,7 @@ export default function App() {
           onValueChange={(itemValue, itemIndex) => setSegundos(itemValue)}
           style={{height: 50, width: 100, color: '#fff'}}
         >
-          <Picker.Item label='0' value='0'/>
+          
           {
             numbers.map((val)=>{
               return (<Picker.Item label={val.toString()} value={val.toString()}/>)
