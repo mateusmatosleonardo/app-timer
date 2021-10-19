@@ -16,9 +16,9 @@ export default props =>{
                 }else{
                     if(!done){
                         done = true
-                        props.setarEstado('leitura')
-                        props.setarMinutos(1)
-                        props.setarSegundos(0)
+                        props.setarEstado('selecionar')
+                        props.setarMinutos(0)
+                        props.setarSegundos(1)
                     }
                 }
             }
