@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 
 export default props =>{
 
-    let done = false
+    var done = false;
 
     useEffect(()=>{
         const timer = setInterval(()=>{
@@ -23,8 +23,7 @@ export default props =>{
                 }
             }
         }, 1000)
-
-        return () => clearInterval(timer)
+        return () => clearInterval(timer);
     })
 
     function resetar(){
@@ -33,13 +32,27 @@ export default props =>{
         props.setarSegundos(0)
     }
 
+    function formatarNumero(number){
+        let finalNumber = ""
+        if(number < 10){
+            finalNumber = "0" + number
+        }else{
+            finalNumber = number
+        }
+
+        return finalNumber;
+    }
+
+    let segundos = formatarNumero(props.segundos)
+    let minutos = formatarNumero(props.minutos)
+
     return(
         <>
         <View style={styles.container}>
             <StatusBar style="auto" />
             <View style={{flexDirection: 'row'}}>
-                <Text style={styles.contador}>{props.minutos} : </Text>
-                <Text style={styles.contador}>{props.segundos}</Text>
+                <Text style={styles.contador}>{minutos} : </Text>
+                <Text style={styles.contador}>{segundos}</Text>
             </View>
                 <TouchableOpacity onPress={()=> resetar()} style={styles.btnIniciar}><Text style={{textAlign: 'center', paddingTop: 35}}>Resetar</Text></TouchableOpacity>
         </View>
